@@ -1,0 +1,95 @@
+{
+  "name": "@static-pages/gitlabio",
+  "version": "0.0.1",
+  "description": "Git repository reader and writer over Gitlab API for @static-pages/core.",
+  "type": "module",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "types": "esm/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./cjs/index.js",
+      "default": "./esm/index.js"
+    },
+    "./reader": {
+      "require": "./cjs/reader.js",
+      "default": "./esm/reader.js"
+    },
+    "./writer": {
+      "require": "./cjs/writer.js",
+      "default": "./esm/writer.js"
+    },
+    "./find-all": {
+      "require": "./cjs/find-all.js",
+      "default": "./esm/find-all.js"
+    },
+    "./find-by-glob": {
+      "require": "./cjs/find-by-glob.js",
+      "default": "./esm/find-by-glob.js"
+    },
+    "./find-changed-by-glob": {
+      "require": "./cjs/find-changed-by-glob.js",
+      "default": "./esm/find-changed-by-glob.js"
+    },
+    "./find-changed-or-triggered-by-glob": {
+      "require": "./cjs/find-changed-or-triggered-by-glob.js",
+      "default": "./esm/find-changed-or-triggered-by-glob.js"
+    },
+    "./parse-header": {
+      "require": "./cjs/parse-header.js",
+      "default": "./esm/parse-header.js"
+    },
+    "./name-by-header": {
+      "require": "./cjs/name-by-header.js",
+      "default": "./esm/name-by-header.js"
+    },
+    "./name-by-url": {
+      "require": "./cjs/name-by-url.js",
+      "default": "./esm/name-by-url.js"
+    }
+  },
+  "scripts": {
+    "prepack": "npm run test",
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc",
+    "watch:esm": "tsc --watch",
+    "build:cjs": "tsc --project tsconfig.cjs.json && echo { \"type\": \"commonjs\" }>cjs/package.json",
+    "watch:cjs": "npm run build:cjs && tsc --project tsconfig.cjs.json --watch",
+    "test": "npm run build && cross-env NODE_OPTIONS=--experimental-vm-modules jest --runInBand",
+    "test:quick": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --runInBand",
+    "clean": "rimraf esm cjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/staticpagesjs/gitlabio.git"
+  },
+  "keywords": [
+    "static-pages",
+    "provider",
+    "reader",
+    "writer"
+  ],
+  "author": "László BULIK",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/staticpagesjs/gitlabio/issues"
+  },
+  "homepage": "https://staticpagesjs.github.io/",
+  "dependencies": {
+    "@gitbeaker/node": "^35.7.0",
+    "@gitbeaker/requester-utils": "^35.7.0",
+    "delay": "^5.0.0",
+    "got": "^12.5.2",
+    "micromatch": "^4.0.4",
+    "xcase": "^2.0.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.6",
+    "@types/micromatch": "^4.0.2",
+    "@types/node": "^18.11.5",
+    "cross-env": "^7.0.3",
+    "jest": "^29.4.0",
+    "rimraf": "^4.1.2",
+    "typescript": "^4.5.5"
+  }
+}
