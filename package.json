@@ -65,6 +65,7 @@
   },
   "keywords": [
     "static-pages",
+    "gitlab",
     "provider",
     "reader",
     "writer"
